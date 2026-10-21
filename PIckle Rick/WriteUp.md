@@ -1,6 +1,9 @@
 # TryHackMe: Pickle Rick
 
 
+Дата: 21.10.2026
+
+
 ### Сложность: Easy
 
 
