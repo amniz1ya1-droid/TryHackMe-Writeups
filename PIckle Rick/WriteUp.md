@@ -1,4 +1,4 @@
-## TryHackMe: Pickle Rick
+# TryHackMe: Pickle Rick
 
 
 Сложность: Easy
