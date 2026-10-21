@@ -63,6 +63,8 @@
 
 ```sudo su```
 
+![oops, problems with load](images/sudoList.jpg)
+
 И у меня получилось, я проверил через whoami, и да я был root. Теперь я занялся поиском флагов,
 в первую очередь начал искать флаги в /var/www/html с помощь ls -la, и смог найти подозрительный файл Sup3rS3cretPickl3Ingred.txt, прочитав который получил первый флаг
 
