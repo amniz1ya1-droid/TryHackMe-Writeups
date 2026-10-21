@@ -85,6 +85,6 @@
 
 Я решил проверить ```/root``` и написав ls -la я нашёл тестовый файл 3rd.txt, использовав cat 3rd.txt я наконец узнал третий флаг, и прошёл машинку
 
-![oops, problems with load}(images/ThirdFlag.jpg)
+![oops, problems with load](images/ThirdFlag.jpg)
 
 Итог: Машинка взломана из-за слабого пароля, оставленного прямо в robots.txt, комментария в коде страницы с username-ом, и доступ к правам sudo без пароля. 
