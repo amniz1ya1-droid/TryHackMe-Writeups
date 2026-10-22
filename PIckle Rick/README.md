@@ -54,7 +54,7 @@ gobuster dir -u http://10.114.151.146 -w /usr/share/wordlists/dirb/common.txt -x
 ```bash
 whoami
 pwd
-whoami
+sudo -l
 ```
 `whoami` показал мне что я `www-data`, `pwd` показал мне что я в `/var/www/html`, а `sudo -l` показал мне, что у меня есть доступ использовать все команды без ввода пароля `(ALL) NOPASSWD: ALL`
 
