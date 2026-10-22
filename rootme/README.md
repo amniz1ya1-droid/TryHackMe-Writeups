@@ -39,7 +39,7 @@ sudo nmap -sV -T4 10.114.148.4 -p-
 gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
 ```
 
-![GoBuster scan result](images/gobuster-results)
+![GoBuster scan result](images/gobuster-results.jpg)
 
 Результат на самом деле довольно хороший, в первую очередь я думаю будет отличной идеей проверить `http://10.114.148.4/uploads`, но даже в коде страницы ничего интересного я не нашёл, теперь решил попробовать посмотреть что в `http://10.114.148.4/panel` и тут можно upload-ить файлы, поэтому первое что я решил загружать туда, это файл shell.php в котором содержался такой код:
 
@@ -49,7 +49,7 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 
 Нужен он для того, чтобы создать на сервере **web-shell** и потом получить **reverse-shell** с помощью него, но как наверное было очевидно, файлы формата PHP загружать нельзя
 
-![Login page](images/shell-php-result)
+![Login page](images/shell-php-result.jpg)
 
 Однако попробовав загрузить файл формата `.png` у меня получилось
 
