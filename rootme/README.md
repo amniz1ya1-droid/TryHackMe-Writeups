@@ -77,7 +77,7 @@ gobuster dir -u http://10.114.148.4 -w /usr/share/wordlists/dirb/common.txt -x p
 ![Login page](images/burpsuite-yes.jpg)
 
 ---
-![Login page](images/uplaods-result.jpg)
+![Login page](images/uploads-result.jpg)
 
 Теперь у нас получилось загрузить файл с `web-shell` на сайт прямо в папку `uploads`, что на самом деле отличный результат! (файл phpml это моя ошибка в правописании, не обращайте внимание)
 
