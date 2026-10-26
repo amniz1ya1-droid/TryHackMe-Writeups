@@ -92,7 +92,7 @@ python3 46635.py -u http://10.114.151.74/simple -w /usr/share/wordlists/rockyou.
 python3 46635.py -u http://10.114.151.74/simple -w /usr/share/wordlists/rockyou.txt
 ```
 
-![Salt, Username, email and hash](images/attack-0.jpg)
+![Salt, Username, email and hash](images/attack-0jpg.jpg)
 
 Вот мы получили огромный кусок данных, среди которых есть: Хеш пароля, соль пароля,  `email` и `username`. Давайте используем это сейчас
 
