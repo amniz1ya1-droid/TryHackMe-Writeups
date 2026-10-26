@@ -143,8 +143,6 @@ hashcat -m 20 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 ssh mitch@10.114.151.74 -p 2222 # -p 2222 мы используем, потому что ssh на нестандартном порте
 ```
 
-![Login correct](images/login-0.jpg)
-
 И вот мы наконец в системе, сделаем базовую разведку:
 ```bash
 whoami
