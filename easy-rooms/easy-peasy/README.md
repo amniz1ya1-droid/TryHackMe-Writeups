@@ -24,4 +24,11 @@ nmap -sV 10.113.149.233 -p- # Раньше я использовал флаг -T
 
 ![nmap results](images/nmap-results.jpg)
 
-Итак, `nmap` показал нам несколько портов, ай наебал он даже не закончил смотреть все порты
+Итак, `nmap` показал нам несколько портов, в общем 3 порта. сайт `http` на `nginx 1.16.1`, `ssh` на нестандартном 6498-ом порте и `Apache` сайт на предпоследнем 65524 порте. Начнём с `nginx`, используем `gobuster`. Чаще всего по умолчанию на `nginx` встречаются файлы форматов `.html`, `.gz`, `.js` и иногда `.txt`, поэтому будем искать их в флаге `-x`:
+
+```bash
+gobuster dir -u http://10.113.149.233 -w /usr/share/wordlists/dirb/common.txt -x html,gz,js,txt
+```
+
+![gobuster results](images/gobuster-results.jpg)
+
