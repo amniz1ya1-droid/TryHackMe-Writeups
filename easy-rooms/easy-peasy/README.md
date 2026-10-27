@@ -192,3 +192,23 @@ find / -type f -perm -04000 -ls 2>/dev/null
 
 ![find results](images/find-results.jpg)
 
+Однако `find` ничего мне не показал, поэтому я решил прогулятся по системе, поискать других пользователей в `/home`:
+
+```bash
+cd /home
+ls -la
+```
+
+Но в итоге нигде ничего не было, я решил проверить не очень стандартный вариант, а именно `crontab`, сначала:
+
+```bash
+crontab -l
+```
+
+который не показал мне ниодного процесса, а потом:
+
+```bash
+cat /etc/crontab
+```
+
+![cat /etc/crontab](images/cat-etc-crontab.jpg)
