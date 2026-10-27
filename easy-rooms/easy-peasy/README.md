@@ -58,3 +58,11 @@ gobuster dir -u http://10.113.149.223/hidden/whatever -w /usr/share/wordlists/di
 
 ![gobuster results 3](images/gobuster-results-3.jpg)
 
+Но в этот раз `gobuster` буквально ничего не показал, поэтому я решаю вернутся к выводу `nmap`. Помимо `ssh` на нестандартном порте, там был сайт `Apache` на 65524-ом порте, исходный код страницы я уже посмотрел и ничего не нашёл там, поэтому давайте теперь используем `gobuster` и тут, а так как сайт на `Apache`, в флаге `-x` мы будем использовать расширения `.php`, `.txt` и `.html`:
+
+```bash
+gobuster dir -u http://10.113.149.223:65524 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
+```
+
+![gobuster results 4](images/gobuster-results-4.jpg)
+
