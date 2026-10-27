@@ -167,4 +167,28 @@ ssh boring@10.113.149.223 -p 6498 # флаг -p 6498 мы используем, 
 
 ![in-system](images/in-system.jpg)
 
+И наконец я в системе, сначала смотрим кто мы и что мы умеем:
+
+```bash
+whoami
+pwd
+ls -la
+sudo -l
+```
+
+![base-commands.jpg](images/base-commands.jpg)
+
+И так, мы - `boring`, мы в `home/boring`, прав `sudo -l` у нас нету, зато я нашёл флаг `user.txt`, который мы с вами сейчас прочитаем:
+
+```bash
+cat /home/boring/user.txt
+```
+
+А теперь давайте повышать привилегии до `root`, первым делом поищем нестандартный `SUID`-биты с помощью `find`:
+
+```bash
+find / -type f -perm -04000 -ls 2>/dev/null
+```
+
+![find results](images/find-results.jpg)
 
