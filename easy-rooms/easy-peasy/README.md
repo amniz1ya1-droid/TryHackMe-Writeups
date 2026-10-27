@@ -39,3 +39,22 @@ gobuster dir -u http://10.113.149.223/hidden -w /usr/share/wordlists/dirb/common
 ```
 
 ![gobuster results 2](images/gobuster-results-2.jpg)
+
+И `gobuster` показал мне внутри `/hidden` ещё одну папку - `/whatever`, я решил перейти и в неё тоже. На первый взгляд там ничего не было, но посмотрев в код страницы `Ctrl+U` я нашёл там не только какую-то новую картинку, но ещё и параграф `(<p p>)` на java! Внутри там была строка `ZmxhZ3tmMXJzN19mbDRnfQ==`, которая вероятно зашифрована. У меня уже есть теория что это `base64`, ведь строка состоит только из цифр, букв верхнего и нижнего регистра. А что выделяет её еще сильнее это `==` в конце, поэтому я решаю попробовать расшифровать это с помощью встроенной утилитой base64 в kali:
+
+```bash
+echo "ZmxhZ3tmMXJzN19mbDRnfQ==" | base64 -d
+```
+
+![echo base64 -d results](images/echo-base64-d-results.jpg)
+
+И у нас есть первый флаг, но на скриншоте я его замажу, потому что нужно самим искать!
+
+Ладно, но стоит держать в голове, что `/whatever` в `/hidden` - тоже папка, и сейчас мы просканируем её с помощью `gobuster`:
+
+```bash
+gobuster dir -u http://10.113.149.223/hidden/whatever -w /usr/share/wordlists/dirb/common.txt -x html,gz,js,txt
+```
+
+![gobuster results 3](images/gobuster-results-3.jpg)
+
