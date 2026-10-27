@@ -133,4 +133,11 @@ hashcat -m 1400 -a 0 hash.txt easypeasy.txt
 hashcat -m 0 -a 0 md5-hash.txt easypeasy.txt
 ```
 
-Но у меня не получается. Остаюсь только я, результат `mypasswordforthatjob` и пустота. 
+Но у меня не получается. Остаюсь только я, результат `mypasswordforthatjob` и пустота. Я решаю осмотреть `http://10.113.149.223:65524/n0th1ng3ls3m4tt3r` с помощью `gobuster`:
+
+```bash
+gobuster dir -u http://10.113.149.223:65524/n0th1ng3ls3m4tt3r -w /usr/share/wordlists/dirb/common.txt x php,html,txt
+```
+
+![gobuste results 5](images/gobuster-results-5.jpg)
+
