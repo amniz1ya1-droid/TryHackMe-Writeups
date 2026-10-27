@@ -32,3 +32,10 @@ gobuster dir -u http://10.113.149.233 -w /usr/share/wordlists/dirb/common.txt -x
 
 ![gobuster results](images/gobuster-results.jpg)
 
+`gobuster` закончил анализ, и в общем дал довольно хороший результат. `index.html`, `robots.txt` и папка `/hidden`. Сначала я решаю посмотреть `index`, там обычное приветствие `nginx`, в коде страницы `(Ctrl+U` ничего не было, поэтому я решил идти дальше. `robots.txt` лишь показал, что роботы отключены на этом сайте. Теперь переходим в самое интересное, в `/http://10.113.149.233/hidden`, и здесь меня встречает.. ничего. Абсолютно пустая страница, я смотрю в код страницы, и в коде страницы понимаю, что здесь должна была быть png картинка, но я её не вижу потому что я живу в РФ и у нас проблемы с `TryHackMe`, но это не важно. Так как `/hidden` это папка, я решаю запустить `gobuster` и на неё тоже:
+
+```bash
+gobuster dir -u http://10.113.149.223/hidden -w /usr/share/wordlists/dirb/common.txt -x html,gz,js,txt
+```
+
+![gobuster results 2](images/gobuster-results-2.jpg)
