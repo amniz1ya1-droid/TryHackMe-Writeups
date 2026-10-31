@@ -1,2 +1,9 @@
-## Прямо здесь я опубликовываю все свои отчёты взлома машинок на сайте TryHackMe. 
-## Добро пожаловать
+### Writeups в TryHackMe
+
+Прямо здесь я пишу все свои writeup-ы машинок Easy, Medium, Hard и Insane уровня на TryHackMe. Добро пожаловать!
+
+https://t.me/Amniz1ya *telegram*
+
+https://tryhackme.com/p/amniz1ya1 *TryHackMe профиль*
+
+*discord: amniz1ya*
